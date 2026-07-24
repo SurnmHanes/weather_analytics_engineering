@@ -29,4 +29,8 @@ if __name__ == "__main__":
 
     weather = get_weather()
 
-    print(weather['hourly'].keys())
+    from transform_weather import create_weather_dataframe
+
+    df = create_weather_dataframe(weather)
+
+    print(df.head())

@@ -1,4 +1,6 @@
 import requests
+from etl.transformation.transform_weather import create_weather_dataframe
+from etl.transformation.validate_weather import validate_weather
 
 def get_weather():
     
@@ -29,8 +31,10 @@ if __name__ == "__main__":
 
     weather = get_weather()
 
-    from transform_weather import create_weather_dataframe
-
     df = create_weather_dataframe(weather)
 
+    validate_weather(df)
+    
     print(df.head())
+    print(df.info())
+    print(df.describe())

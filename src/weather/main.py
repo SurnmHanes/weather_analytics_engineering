@@ -1,4 +1,20 @@
-from weather.ingestion import extract_weather
+from src.weather.ingestion.extract_weather import get_weather
+from src.weather.transformation.transform_weather import create_weather_dataframe
+from src.weather.transformation.validate_weather import validate_weather
 
+def main():
 
-extract_weather(df)
+    print("Starting weather pipeline")
+
+    weather = get_weather()
+    print("API weather data obtained")
+
+    df = create_weather_dataframe(weather)
+    print("JSON data converted into dataframe")
+
+    validate_weather(df)
+
+    print("Pipeline complete")
+
+if __name__ == "__main__":
+    main()

@@ -1,6 +1,6 @@
 import requests
-from etl.transformation.transform_weather import create_weather_dataframe
-from etl.transformation.validate_weather import validate_weather
+from src.weather.transformation.transform_weather import create_weather_dataframe
+from src.weather.transformation.validate_weather import validate_weather
 
 def get_weather():
     

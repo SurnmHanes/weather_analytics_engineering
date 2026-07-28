@@ -11,3 +11,5 @@ HOURLY_VARIABLES = [
     "wind_speed_10m"
 ]
 
+LOCATION = "Coalville"
+

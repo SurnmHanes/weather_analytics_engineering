@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_weather
+    description: "This model represents the weather data."
+    columns:
+      - name: observation_datetime
+        description: "The date and time of the weather observation."
+        tests:
+          - not_null
+      - name: temperature_celsius
+        description: "The temperature recorded at the given datetime."
+        tests:
+          - not_null
+      - name: precipitation_mm
+        description: "The amount of precipitation recorded at the given datetime."
+        tests:
+          - not_null
+      - name: wind_speed_kmh
+        description: "The wind speed recorded at the given datetime."
+        tests:
+          - not_null

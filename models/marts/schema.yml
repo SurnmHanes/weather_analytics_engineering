@@ -9,15 +9,54 @@ models:
         tests:
           - not_null
           - unique
-      # - name: city
-      #   description: "The name of the city."
-      #   tests:
-      #     - not_null
-      # - name: state
-      #   description: "The state or province of the location."
-      #   tests:
-      #     - not_null
-      # - name: country
-      #   description: "The country of the location."
-      #   tests:
-      #     - not_null
+      - name: location
+        description: "The name of the location."
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_date
+    description: "A dimension table for dates."
+    columns:
+      - name: date_key
+        description: "The unique identifier for a date."
+        tests:
+          - not_null
+          - unique
+      - name: date_day
+        description: "The date in YYYY-MM-DD format."
+        tests:
+          - not_null
+          - unique
+
+  - name: fact_weather
+    description: "A fact table for weather observations."
+    columns:
+      - name: observation_key
+        description: "The unique identifier for a weather observation."
+        tests:
+          - not_null
+          - unique
+
+      - name: observation_datetime
+        description: "The date and time of the weather observation."
+        tests:
+          - not_null
+
+      - name: date_key
+        description: "The foreign key to the dim_date table."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+
+      - name: location_key
+        description: "The foreign key to the dim_location table."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_location')
+                field: location_key

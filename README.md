@@ -85,34 +85,34 @@ Documentation is maintained through dbt <code>schema.yml</code> including descri
 
 ### Key Engineering Decisions
 
-1. Python for API interrogation.
+**Python for API interrogation** <br>
 Separates external API interrogation and JSON transformation from warehouse modelling.
 
-2. Separate configuration from ingestion logic
+**Separate configuration from ingestion logic** <br>
 API parameters and other configurable values are maintained separately from the extraction code.
 
-3. DuckDB as the local analytical warehouse
+**DuckDB as the local analytical warehouse** <br>
 Lightweight, analytical database well suited for development and portfolio use.
 
-4. dbt for modular transformations
+**dbt for modular transformations** <br>
 Separates staging, dimension and fact modelling and provides testing and documentation.
 
-5. Separation of raw ingestion from transformation
+**Separation of raw ingestion from transformation** <br>
 Raw API data is loaded into DuckDB before being transformed using dbt.
 
-6. Deterministic surrogate keys
+**Deterministic surrogate keys** <br>
 Generated using a hash function to provide stable identifiers for dimensional entities.
 
-7. Avoidance of volatile keys
+**Avoidance of volatile keys** <br>
 <code>row_number()</code> is not used to generate dimension keys, avoiding changes in key values if the underlying data changes.   
 
-8. Star schema design
+**Star schema design** <br>
 Separates dimensional attributes from the weather observation fact table for analytical simplicity.
 
-9. Retention of original observation_timestamp
+**Retention of original observation_datetime** <br>
 <code>observation_datetime</code> is retained along with a separate, derived <code>observation_time</code> column allowing both observation-level analysis and time-of-day analysis.
 
-10. Analytical requirements drive the model evolution.
+**Analytical requirements drive the model evolution** <br>
 The dimensional model was iteratively enhanced as analytical questions emerged from the Power BI layer.
 
 For example, requirements to analyse observations by calendar month and time of day resulted in the addition of attributes such as <code>month_year</code>, <code>month_year_sort</code> and <code>observation_time</code>

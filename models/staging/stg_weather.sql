@@ -12,6 +12,7 @@ with source as (
 renamed as (
     select 
         datetime as observation_datetime,
+        cast(datetime as time) as observation_time,
         temperature as temperature_celsius,
         precipitation as precipitation_mm,
         wind_speed as wind_speed_kmh,

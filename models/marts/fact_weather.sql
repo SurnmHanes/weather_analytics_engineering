@@ -1,8 +1,11 @@
+{{ config(materialized='table') }}
+
 SELECT 
         {{ dbt_utils.generate_surrogate_key(['stg.observation_datetime', 'stg.location']) }} AS observation_key,
         d.date_key,
         l.location_key,
         stg.observation_datetime,
+        stg.observation_time,
         stg.temperature_celsius,
         stg.precipitation_mm,
         stg.wind_speed_kmh

@@ -22,10 +22,12 @@ date_base AS (
 SELECT
     CAST(strftime(date_day, '%Y%m%d') AS INT64) AS date_key,
     date_day,
-    EXTRACT(YEAR FROM date_day) AS YEAR,
-    EXTRACT(MONTH FROM date_day) AS MONTH,
-    strftime(date_day, '%B') AS month_name,
-    EXTRACT(QUARTER FROM date_day) AS QUARTER,
+    EXTRACT(YEAR FROM date_day) AS Year,
+    EXTRACT(MONTH FROM date_day) AS Month,
+    MONTHNAME(date_day) AS month_name,
+    strftime(date_day, '%b') AS short_month_name,
+    strftime(date_day, '%b %Y') AS month_year,
+    CAST(strftime(date_day, '%Y%m') AS INT64) AS month_year_sort,
     EXTRACT(DAY FROM date_day) AS day_of_month,
     strftime(date_day, '%A') AS day_name,
     EXTRACT(YEAR FROM date_day) = EXTRACT(YEAR FROM CURRENT_DATE) AS is_current_year

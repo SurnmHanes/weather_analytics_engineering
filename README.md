@@ -36,7 +36,7 @@ The dbt project is structured into 3 layers:
 - Renames and standardises raw fields
 - Applies appropriate data types
 - Derives analytical attributes where appropriate
-- Provides a clean interface to raw ingestion layer.
+- Provides a clean interface to the raw ingestion layer.
 
 2. Dimension Layer
 - Generates a continuous calendar from the observation date range
@@ -53,7 +53,7 @@ The dbt project is structured into 3 layers:
 
 #### Fact Table
 - fact_weather
-- **Grain**: 1 row per hourly observation
+- **Grain**: 1 row per weather observation
 
 #### Dimensions
 - dim_location
@@ -66,7 +66,7 @@ The dbt project is structured into 3 layers:
 - SQL (transformation and analytical logic)
 - Python / Pandas (API ingestion and JSON transformation)
 - Open-Meteo API (source system)
-- GIT + Visual Studio code (development environment)
+- GIT + Visual Studio Code (development environment)
 - Power BI (visualisation layer)
 
 ### Data Quality & Testing
@@ -92,7 +92,7 @@ Separates external API interrogation and JSON transformation from warehouse mode
 API parameters and other configurable values are maintained separately from the extraction code.
 
 **DuckDB as the local analytical warehouse** <br>
-Lightweight, analytical database well suited for development and portfolio use.
+A lightweight, analytical database well suited for development and portfolio use.
 
 **dbt for modular transformations** <br>
 Separates staging, dimension and fact modelling and provides testing and documentation.
@@ -115,11 +115,11 @@ Separates dimensional attributes from the weather observation fact table for ana
 **Analytical requirements drive the model evolution** <br>
 The dimensional model was iteratively enhanced as analytical questions emerged from the Power BI layer.
 
-For example, requirements to analyse observations by calendar month and time of day resulted in the addition of attributes such as <code>month_year</code>, <code>month_year_sort</code> and <code>observation_time</code>
+For example, requirements to analyse observations by calendar month and time of day resulted in the addition of attributes such as <code>month_year</code>, <code>month_year_sort</code> and <code>observation_time</code>.
 
 ### Analytical Consumption
 
-The resulting dimensional model is consumed by Power BI to demonstrate the warehouse can support different analytical grains and definitions. 
+The resulting dimensional model is consumed by Power BI to demonstrate that the warehouse can support different analytical grains and definitions. 
 
 Current analysis includes:
 
@@ -137,7 +137,7 @@ The Power BI report is a **consumer of the semantic model rather than the primar
 ### Future Improvements
 
 - Add incremental models for large-scale scenarios
-- Introduce data freshness tests on ingestion layer
+- Introduce data freshness tests on the ingestion layer
 - Complete documentation of the remaining dbt models and columns
 - Extend the pipeline to support multiple locations
 - Introduce a reusable metrics layer for commonly used KPIs
